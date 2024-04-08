@@ -2,8 +2,8 @@
 <launch>
   <!-- Essential parameters -->
   <arg name="map_path" description="point cloud and lanelet2 map directory path"/>
-  <arg name="vehicle_model" default="sample_vehicle" description="vehicle model name"/>
-  <arg name="sensor_model" default="sample_sensor_kit" description="sensor model name"/>
+  <arg name="vehicle_model" default="limo_vehicle" description="vehicle model name"/>
+  <arg name="sensor_model" default="limo_sensor_kit" description="sensor model name"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
   <arg name="data_path" default="$(env HOME)/autoware_data" description="packages data and artifacts directory path"/>
 
@@ -13,12 +13,12 @@
   <!-- Optional parameters -->
   <!-- Modules to be launched -->
   <arg name="launch_vehicle" default="true" description="launch vehicle"/>
-  <arg name="launch_system" default="true" description="launch system"/>
+  <arg name="launch_system" default="false" description="launch system"/>
   <arg name="launch_map" default="true" description="launch map"/>
   <arg name="launch_sensing" default="true" description="launch sensing"/>
   <arg name="launch_sensing_driver" default="true" description="launch sensing driver"/>
   <arg name="launch_localization" default="true" description="launch localization"/>
-  <arg name="launch_perception" default="true" description="launch perception"/>
+  <arg name="launch_perception" default="false" description="launch perception"/>
   <arg name="launch_planning" default="true" description="launch planning"/>
   <arg name="launch_control" default="true" description="launch control"/>
   <!-- Global parameters -->
@@ -42,7 +42,7 @@
   <arg name="rviz_respawn" default="true"/>
   <!-- Perception -->
   <arg name="perception_mode" default="lidar" description="select perception mode. camera_lidar_radar_fusion, camera_lidar_fusion, lidar_radar_fusion, lidar, radar"/>
-  <arg name="traffic_light_recognition/enable_fine_detection" default="true" description="enable traffic light fine detection"/>
+  <arg name="traffic_light_recognition/enable_fine_detection" default="false" description="enable traffic light fine detection"/>
   <!-- Auto mode setting-->
   <arg name="enable_all_modules_auto_mode" default="false" description="enable all module's auto mode"/>
   <arg name="is_simulation" default="false" description="Autoware's behavior will change depending on whether this is a simulation or not."/>
@@ -97,6 +97,8 @@
   <group if="$(var launch_perception)">
     <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_perception_component.launch.xml">
       <arg name="data_path" value="$(var data_path)"/>
+      <arg name="perception_mode" value="lidar"/>
+      <arg name="use_traffic_light_recognition" value="false"/>      
     </include>
   </group>
 

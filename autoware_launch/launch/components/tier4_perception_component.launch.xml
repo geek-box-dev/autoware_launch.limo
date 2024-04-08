@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+  <arg name="perception_mode" default="lidar" />
   <arg
     name="occupancy_grid_map_method"
     default="pointcloud_based_occupancy_grid_map"

@@ -14,7 +14,7 @@
     sensor_points:
       # Required distance of input sensor points. [m]
       # If the max distance of input sensor points is lower than this value, the scan matching will not be performed.
-      required_distance: 10.0
+      required_distance: 5.0
 
 
     ndt:
@@ -26,7 +26,7 @@
       step_size: 0.1
 
       # The ND voxel grid resolution
-      resolution: 2.0
+      resolution: 0.5
 
       # The number of iterations required to calculate alignment
       max_iterations: 30
@@ -43,7 +43,7 @@
 
     initial_pose_estimation:
       # The number of particles to estimate initial pose
-      particles_num: 200
+      particles_num: 100
 
       # The number of initial random trials in the TPE (Tree-Structured Parzen Estimator).
       # This value should be equal to or less than 'initial_estimate_particles_num' and more than 0.
