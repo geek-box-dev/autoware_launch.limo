@@ -8,6 +8,13 @@
   <arg name="initial_pose" default="[]" description="initial pose (x, y, z, quat_x, quat_y, quat_z, quat_w)"/>
 
   <group>
+    <node pkg="topic_tools" exec="relay" name="sensing_localization_pointcloud_relay" output="log">
+      <param name="input_topic" value="/sensing/lidar/concatenated/pointcloud"/>
+      <param name="output_topic" value="/localization/util/downsample/pointcloud"/>
+      <param name="type" value="sensor_msgs/msg/PointCloud2"/>
+      <param name="reliability" value="best_effort"/>
+    </node>
+
     <include file="$(find-pkg-share tier4_localization_launch)/launch/localization.launch.xml">
       <arg name="pose_source" value="$(var pose_source)"/>
       <arg name="twist_source" value="$(var twist_source)"/>
